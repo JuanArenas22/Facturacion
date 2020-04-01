@@ -18,6 +18,8 @@ public class Facturacion {
         // TODO code application logic here
         
         System.out.println("Hola Juan");
+        
+        System.out.println("Hola michael mendieta");
     }
     
 }
