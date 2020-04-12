@@ -23,6 +23,7 @@ public class VistaCategoria extends javax.swing.JFrame {
      */
     public VistaCategoria() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controllerCategoria = new CtlCategoria();
         listar();
         txtCodigo_cate.setEnabled(false);
@@ -87,7 +88,7 @@ public class VistaCategoria extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FACTURACION");
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setText("CATEGORIA DEL PRODUCTO");
@@ -123,7 +124,7 @@ public class VistaCategoria extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("CODIGO DE LA CATEGORIA:");
 
@@ -374,7 +375,7 @@ public class VistaCategoria extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VistaMenu pro = new VistaMenu();
+        VistaMenuVendedor pro = new VistaMenuVendedor();
         pro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

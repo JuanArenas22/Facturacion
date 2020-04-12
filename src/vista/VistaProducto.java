@@ -27,6 +27,7 @@ public class VistaProducto extends javax.swing.JFrame {
      */
     public VistaProducto() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controllerProducto = new CtlProducto();
 
         cargarcombo.CargarComboProveedor(CmbProveedor);
@@ -117,7 +118,7 @@ public class VistaProducto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FACTURACION");
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setText("PRODUCTOS");
@@ -153,7 +154,7 @@ public class VistaProducto extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setText("UNIDAD:");
 
@@ -477,7 +478,7 @@ public class VistaProducto extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        VistaMenu pro = new VistaMenu();
+        VistaMenuVendedor pro = new VistaMenuVendedor();
         pro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
