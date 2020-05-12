@@ -159,5 +159,30 @@ public class ProductoDAO extends Conexion {
         }
 
     }
+    
+    //Esta Lista Sirve para el carrito de compras
+    public DefaultTableModel listarProductoCarrito() {
+        DefaultTableModel modelTabla;
+        String nombreColumnas[] = {"CODIGO", "NOMBRE", "PRECIO"};
+        modelTabla = new DefaultTableModel(new Object[][]{}, nombreColumnas); // Qué hace esto?
+
+        String consulta = "select codigo_producto, nombre_producto, precio from producto;";
+        System.out.println(consulta);
+        super.ejecutarRetorno(consulta);
+
+        try {
+            while (resultadoDB.next()) {
+                modelTabla.addRow(new Object[]{
+                    resultadoDB.getInt("codigo_producto"),
+                    resultadoDB.getString("nombre_producto"),
+                    resultadoDB.getDouble("precio")});
+            }
+        } catch (SQLException ex) {
+            System.out.println("ESTO SE TOSTO!");
+        }
+        return modelTabla;
+    }
+    
+    
 
 }

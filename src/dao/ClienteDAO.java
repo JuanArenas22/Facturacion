@@ -7,6 +7,7 @@ package dao;
 
 import conexion.Conexion;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.Producto;
 
@@ -46,7 +47,7 @@ public class ClienteDAO extends Conexion{
     }
 
     public Cliente buscarCliente(int cedula) {
-        String consulta = "select nombre_cliente, nombre_usuario, direccion, telefono,correo, contrasena from Cliente where cedula_cliente ='" + cedula + "';";
+        String consulta = "select cedula_cliente, nombre_cliente, nombre_usuario, direccion, telefono,correo, contrasena from Cliente where cedula_cliente ='" + cedula + "';";
         Cliente cli = new Cliente();
         System.out.println(consulta);
         super.ejecutarRetorno(consulta);
@@ -91,6 +92,32 @@ public class ClienteDAO extends Conexion{
 
         }
         return cli;
+    }
+    
+    public DefaultTableModel listarCliente(){
+        DefaultTableModel modelTabla;
+        String nombreColumnas[] = {"CEDULA", "NOMBRE", "USUARIO", "DIRECCION", "TELEFONO","CORREO","PASSWORD"};
+        modelTabla = new DefaultTableModel(new Object[][]{}, nombreColumnas); // Qué hace esto?
+        
+        String consulta = "select cedula_cliente, nombre_cliente, nombre_usuario, direccion, telefono, correo, contrasena from Cliente;";
+         System.out.println(consulta);
+        super.ejecutarRetorno(consulta);
+        
+        try {
+            while(resultadoDB.next()){
+                modelTabla.addRow(new Object[]{
+                resultadoDB.getInt("cedula_cliente"),
+                resultadoDB.getString("nombre_cliente"),
+                resultadoDB.getString("nombre_usuario"),
+                resultadoDB.getString("direccion"),
+                resultadoDB.getString("telefono"),
+                resultadoDB.getString("correo"),
+                resultadoDB.getString("contrasena")});
+            }
+        } catch (SQLException ex) {
+            System.out.println("ESTO SE TOSTO!");
+        }
+        return modelTabla;
     }
     
 }

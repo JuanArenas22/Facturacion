@@ -6,6 +6,7 @@
 package controlador;
 
 import dao.ClienteDAO;
+import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
 /**
@@ -38,6 +39,10 @@ public class CtlCliente {
     
     public boolean eliminarCliente(int cedula){
         return dao.eliminarCliente(cedula);
+    }
+    
+    public DefaultTableModel SolicitudListar() {
+        return dao.listarCliente();
     }
     
     

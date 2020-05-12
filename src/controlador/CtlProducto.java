@@ -43,6 +43,9 @@ public class CtlProducto {
         return dao.listarProducto();
     }
     
+    public DefaultTableModel SolicitudListarCarrito() {
+        return dao.listarProductoCarrito();
+    }  
     
     
     
