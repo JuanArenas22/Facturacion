@@ -48,18 +48,18 @@ public class ClienteDAOTest{
     /**
      * Test of guardarCliente method, of class ClienteDAO.
      */
-//    @Test
-//    public void testGuardarCliente() {
-//        System.out.println("guardarCliente");
-//        cli = new Cliente(55,"kira", "pepito", "25 mayo", "9876543","kiralomejor@gmail.com", "kira");           
-//                            
-//        
-//        boolean resultObtenido = true;
-//        boolean resultEsperado = dao.guardarCliente(cli);
-//        
-//        assertEquals(resultObtenido, resultEsperado);       
-//        
-//    }
+    @Test
+    public void testGuardarCliente() {
+        System.out.println("guardarCliente");
+        cli = new Cliente(55,"kira", "pepito", "25 mayo", "9876543","kiralomejor@gmail.com", "kira");           
+                            
+        
+        boolean resultObtenido = true;
+        boolean resultEsperado = dao.guardarCliente(cli);
+        
+        assertEquals(resultObtenido, resultEsperado);       
+        
+    }
 
     /**
      * Test of eliminarCliente method, of class ClienteDAO.
