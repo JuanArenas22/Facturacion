@@ -194,7 +194,7 @@ public class VistaLogin extends javax.swing.JFrame {
                 if (RadioCliente.isSelected()) {
                     if (cli.getNombre_usuario().equals(nombre) && cli.getContrasena().equals(contrasena)) {
                         JOptionPane.showMessageDialog(null, "Bienvenido Cliente: " + nombre);
-                        VistaMenuCliente v = new VistaMenuCliente();
+                        VistaMenuCliente v = new VistaMenuCliente(txtNombre_usuario.getText());
                         v.setVisible(true);
                         this.setVisible(false);
                     }

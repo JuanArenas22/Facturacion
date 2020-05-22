@@ -14,8 +14,9 @@ public class VistaMenuCliente extends javax.swing.JFrame {
     /**
      * Creates new form VistaMenuCliente
      */
-    public VistaMenuCliente() {
+    public VistaMenuCliente(String cedula) {
         initComponents();
+        labelCedula_cliente.setText(cedula);
         this.setLocationRelativeTo(null);
     }
 
@@ -31,6 +32,7 @@ public class VistaMenuCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        labelCedula_cliente = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -46,13 +48,20 @@ public class VistaMenuCliente extends javax.swing.JFrame {
             }
         });
 
+        labelCedula_cliente.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelCedula_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -64,7 +73,9 @@ public class VistaMenuCliente extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(labelCedula_cliente))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -118,7 +129,7 @@ public class VistaMenuCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VistaCarritoCliente v = new VistaCarritoCliente();
+        VistaCarritoCliente v = new VistaCarritoCliente(labelCedula_cliente.getText());
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -160,7 +171,7 @@ public class VistaMenuCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaMenuCliente().setVisible(true);
+                new VistaMenuCliente(null).setVisible(true);
             }
         });
     }
@@ -171,5 +182,6 @@ public class VistaMenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelCedula_cliente;
     // End of variables declaration//GEN-END:variables
 }
