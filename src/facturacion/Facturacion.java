@@ -5,6 +5,9 @@
  */
 package facturacion;
 
+import vista.VistaLogin;
+
+
 /**
  *
  * @author Usuario
@@ -17,9 +20,17 @@ public class Facturacion {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        System.out.println("Hola Juan");
-        
-        System.out.println("Hola michael mendieta");
+        VistaLogin v = new VistaLogin();
+        v.setVisible(true);
     }
     
+    
+
+
+
+    
+    
+    
 }
+    
+

@@ -48,7 +48,7 @@ public class FacturaDAOTest {
     @Test
     public void testGuardarFactura() {
         System.out.println("guardarFactura");
-        factura = new Factura(6677, "juan22", 1, "cilantro", 2, 10000, 20000, 4058100, 951900, 20000);           
+        factura = new Factura(55432, "diana22", 1, "cilantro", 2, 100288, 20330, 4058400, 951900, 20000);           
                             
         
         boolean resultObtenido = true;

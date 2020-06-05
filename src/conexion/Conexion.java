@@ -38,6 +38,17 @@ public class Conexion {
         }
     }
 
+    public Connection getConexionDB() {
+        conectar();
+        return conexionDB;
+    }
+
+    public void setConexionDB(Connection conexionDB) {
+        this.conexionDB = conexionDB;
+    }
+    
+    
+
     public void desconectar() {
         try {
             conexionDB.close();

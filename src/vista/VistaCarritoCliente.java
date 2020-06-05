@@ -9,7 +9,14 @@ import conexion.Conexion;
 import controlador.CtlFactura;
 import controlador.CtlProducto;
 import java.awt.Color;
+import java.awt.List;
+import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,10 +24,13 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Factura;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import sun.applet.Main;
 
 /**
  *
@@ -35,12 +45,17 @@ public class VistaCarritoCliente extends javax.swing.JFrame {
     static double total;
     double subtotal;
     double igv;
+    Conexion conexion;
 
     /**
      * Creates new form VistaCarritoCliente
      */
     public VistaCarritoCliente(String cedula) {
         initComponents();
+        conexion = new Conexion();
+        String codigo = JOptionPane.showInputDialog(null, "Ingrese un codigo de 5 digitos");
+        txtCodigo_Venta.setText(codigo + "");
+        txtCodigo_Venta.setEditable(false);
         labelCliente.setText(cedula);
         controlador = new CtlProducto();
         controlFactura = new CtlFactura();
@@ -417,7 +432,7 @@ public class VistaCarritoCliente extends javax.swing.JFrame {
                 total = precioactual;
                 txtTotal.setText("" + total);
                 igvactual = total * 0.19;
-                txtigv.setText("" + igv);
+                txtigv.setText("" + igvactual);
                 subtotalactual = precioactual - igvactual;
                 txtSubTotal.setText("" + subtotalactual);
                 modelTabla = (DefaultTableModel) table2.getModel();
@@ -448,25 +463,51 @@ public class VistaCarritoCliente extends javax.swing.JFrame {
                 controlFactura.GuardarFactura(f);
 
             }
+            //txtCodigo_Venta.setText("");
+            txtCodigo_Venta.setEditable(true);
             LimpiarTabla2();
+            cantidadSpinner.setValue(1);
+            txtSubTotal.setText("0.0");
+            txtigv.setText("0.0");
+            txtTotal.setText("0.0");
             JOptionPane.showMessageDialog(null, "Se guardo el pedido correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar el codigo");
         }
+        
+        
+        try {
+            JasperReport reporte = null;
+            String path = "src\\report\\FacturaCliente.jasper";            
+            Map parametro = new HashMap();
+            parametro.put("codigo_factura", txtCodigo_Venta.getText());
+            reporte  = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conexion.getConexionDB());
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);            
+            view.setVisible(true);
+            
+            txtCodigo_Venta.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        try {
-//            
-//            Conexion con = new Conexion();
-//            Connection conm = con.conectar();
-//            
-//            JasperReport reporte = null;
-//            String path = "src\\report\\FacturaCliente.jasper";
 //
-//            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-//            
-//            JasperPrint jprint = JasperFillManager.fillReport(path,null,conm);
-//        } catch (JRException ex) {
-//            Logger.getLogger(VistaCarritoCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            JasperReport reporte = null;
+//            String path = "C:\\Users\\Usuario\\Documents\\GitHub\\Facturacion\\src\\report\\FacturaCliente.jasper";
+//            Map parameters = new HashMap();
+//            parameters.put("factura_id_factura", 87656);
+//            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(path);
+//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conexion.getConexionDB());
+////            JasperViewer.viewReport(jasperPrint);
+//            JasperExportManager.exportReportToPdfFile(jasperPrint, "factura.pdf");
+//
+////            JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
 //        }
 
 
